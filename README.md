@@ -16,14 +16,14 @@ evaluation, real failure-case analysis, and defensive error handling.
      low-confidence predictions get a human in the loop instead of being auto-actioned
    - **An auto-generated first-response draft**
 
-2. **More robust evaluation** — added **5-fold cross-validation** alongside the Task 2
-   train/test split, so the reported metric reflects performance across the whole dataset
-   rather than a single split.
+2. **A larger, cross-validated evaluation** — the labeled dataset grew from ~40 to 160
+   examples (40 per category), and 5-fold cross-validation now sits alongside the Task 2
+   train/test split for a more robust headline metric: **macro F1 of ~0.94** (up from ~0.5
+   on the smaller dataset).
 
-3. **Failure-case analysis** — a handful of concrete misclassifications pulled from the
-   held-out predictions, each with a root-cause explanation (see `demo.ipynb`, section 2).
-   This points directly at the next improvement for Task 4: more labeled examples per
-   category so similar-sounding tickets separate more cleanly.
+3. **Failure-case analysis** — the small number of remaining misclassifications pulled from
+   the held-out predictions, each with a root-cause explanation (see `demo.ipynb`,
+   section 2) — genuinely ambiguous short tickets rather than a systematic weakness.
 
 4. **Error handling** — `classify_ticket()` never raises. Empty strings, `None`, wrong
    types, too-short text, and oversized text are all caught and returned as structured
